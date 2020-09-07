@@ -13,7 +13,7 @@ namespace craXcel
     /// <summary>
     /// Base class for Microsoft Office applications.
     /// </summary>
-    internal abstract class OfficeApplication : ILockedFile
+    public abstract class OfficeApplication : ILockedFile
     {
         /// <summary>
         /// The file specific by the user that requires unlocking.

@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.1": {}
+    ".NETCoreApp,Version=v3.1": {
+      "CraxcelLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/CraxcelLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CraxcelLibrary.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "CraxcelLibrary/1.0.0": {
+      "type": "project",
+      "path": "../CraxcelLibrary/CraxcelLibrary.csproj",
+      "msbuildProject": "../CraxcelLibrary/CraxcelLibrary.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.1": []
+    ".NETCoreApp,Version=v3.1": [
+      "CraxcelLibrary >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\PeteM\\.nuget\\packages\\": {}
@@ -32,7 +51,11 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\PeteM\\source\\repos\\craXcel\\CraxcelLibrary\\CraxcelLibrary.csproj": {
+              "projectPath": "C:\\Users\\PeteM\\source\\repos\\craXcel\\CraxcelLibrary\\CraxcelLibrary.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

@@ -12,3 +12,7 @@ C:\Users\PeteM\source\repos\craXcel\FormUI\obj\Debug\netcoreapp3.1\FormUI.dll
 C:\Users\PeteM\source\repos\craXcel\FormUI\obj\Debug\netcoreapp3.1\FormUI.pdb
 C:\Users\PeteM\source\repos\craXcel\FormUI\obj\Debug\netcoreapp3.1\FormUI.genruntimeconfig.cache
 C:\Users\PeteM\source\repos\craXcel\FormUI\obj\Debug\netcoreapp3.1\FormUI.ApplicationForm.resources
+C:\Users\PeteM\source\repos\craXcel\FormUI\bin\Debug\netcoreapp3.1\CraxcelLibrary.dll
+C:\Users\PeteM\source\repos\craXcel\FormUI\bin\Debug\netcoreapp3.1\CraxcelLibrary.pdb
+C:\Users\PeteM\source\repos\craXcel\FormUI\obj\Debug\netcoreapp3.1\FormUI.csprojAssemblyReference.cache
+C:\Users\PeteM\source\repos\craXcel\FormUI\obj\Debug\netcoreapp3.1\FormUI.csproj.CopyComplete

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace craXcel
 {
-    interface ILockedFile
+    public interface ILockedFile
     {
         public FileInfo LockedFile { get; }
 

@@ -64,7 +64,7 @@
             // 
             this.removeSelectedButton.BackColor = System.Drawing.Color.IndianRed;
             this.removeSelectedButton.ForeColor = System.Drawing.Color.White;
-            this.removeSelectedButton.Location = new System.Drawing.Point(241, 21);
+            this.removeSelectedButton.Location = new System.Drawing.Point(240, 21);
             this.removeSelectedButton.Name = "removeSelectedButton";
             this.removeSelectedButton.Size = new System.Drawing.Size(150, 30);
             this.removeSelectedButton.TabIndex = 1;

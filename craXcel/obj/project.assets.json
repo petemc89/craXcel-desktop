@@ -13,9 +13,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\PeteM\\source\\repos\\craXcel\\craXcel\\CraxcelLibrary.csproj",
-      "projectName": "CraxcelLibrary",
-      "projectPath": "C:\\Users\\PeteM\\source\\repos\\craXcel\\craXcel\\CraxcelLibrary.csproj",
+      "projectUniqueName": "C:\\Users\\PeteM\\source\\repos\\craXcel\\craXcel\\CraxcelLibraryOld.csproj",
+      "projectName": "CraxcelLibraryOld",
+      "projectPath": "C:\\Users\\PeteM\\source\\repos\\craXcel\\craXcel\\CraxcelLibraryOld.csproj",
       "packagesPath": "C:\\Users\\PeteM\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\PeteM\\source\\repos\\craXcel\\craXcel\\obj\\",
       "projectStyle": "PackageReference",

@@ -11,7 +11,7 @@ using System.Runtime.Remoting;
 
 namespace craXcel
 {
-    class Excel : OfficeApplication
+    public class Excel : OfficeApplication
     {
         internal override string XML_BASE_DIR => "xl";
         private string WORKBOOK_XML_FILEPATH => Path.Combine(XML_BASE_DIR, "workbook.xml");

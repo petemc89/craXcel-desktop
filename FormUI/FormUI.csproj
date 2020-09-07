@@ -6,4 +6,8 @@
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CraxcelLibrary\CraxcelLibrary.csproj" />
+  </ItemGroup>
+
 </Project>
