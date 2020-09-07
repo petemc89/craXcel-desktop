@@ -1,0 +1,14 @@
+C:\Users\PeteM\source\repos\craXcel\FormUI\bin\Debug\netcoreapp3.1\FormUI.exe
+C:\Users\PeteM\source\repos\craXcel\FormUI\bin\Debug\netcoreapp3.1\FormUI.deps.json
+C:\Users\PeteM\source\repos\craXcel\FormUI\bin\Debug\netcoreapp3.1\FormUI.runtimeconfig.json
+C:\Users\PeteM\source\repos\craXcel\FormUI\bin\Debug\netcoreapp3.1\FormUI.runtimeconfig.dev.json
+C:\Users\PeteM\source\repos\craXcel\FormUI\bin\Debug\netcoreapp3.1\FormUI.dll
+C:\Users\PeteM\source\repos\craXcel\FormUI\bin\Debug\netcoreapp3.1\FormUI.pdb
+C:\Users\PeteM\source\repos\craXcel\FormUI\obj\Debug\netcoreapp3.1\FormUI.csproj.GenerateResource.cache
+C:\Users\PeteM\source\repos\craXcel\FormUI\obj\Debug\netcoreapp3.1\FormUI.AssemblyInfoInputs.cache
+C:\Users\PeteM\source\repos\craXcel\FormUI\obj\Debug\netcoreapp3.1\FormUI.AssemblyInfo.cs
+C:\Users\PeteM\source\repos\craXcel\FormUI\obj\Debug\netcoreapp3.1\FormUI.csproj.CoreCompileInputs.cache
+C:\Users\PeteM\source\repos\craXcel\FormUI\obj\Debug\netcoreapp3.1\FormUI.dll
+C:\Users\PeteM\source\repos\craXcel\FormUI\obj\Debug\netcoreapp3.1\FormUI.pdb
+C:\Users\PeteM\source\repos\craXcel\FormUI\obj\Debug\netcoreapp3.1\FormUI.genruntimeconfig.cache
+C:\Users\PeteM\source\repos\craXcel\FormUI\obj\Debug\netcoreapp3.1\FormUI.ApplicationForm.resources

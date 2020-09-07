@@ -1,0 +1,4 @@
+C:\Users\PeteM\source\repos\craXcel\craXcel\obj\Debug\netcoreapp3.1\CraxcelLibrary.csprojAssemblyReference.cache
+C:\Users\PeteM\source\repos\craXcel\craXcel\obj\Debug\netcoreapp3.1\CraxcelLibrary.AssemblyInfoInputs.cache
+C:\Users\PeteM\source\repos\craXcel\craXcel\obj\Debug\netcoreapp3.1\CraxcelLibrary.AssemblyInfo.cs
+C:\Users\PeteM\source\repos\craXcel\craXcel\obj\Debug\netcoreapp3.1\CraxcelLibrary.csproj.CoreCompileInputs.cache
