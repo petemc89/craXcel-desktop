@@ -3,7 +3,7 @@ using System.IO;
 
 namespace craXcel
 {
-    public class Powerpoint : OfficeApplication
+    public class Powerpoint : MicrosoftOffice
     {
         internal override string XML_BASE_DIR => "ppt";
         private string PRESENTATION_XML_FILEPATH => Path.Combine(XML_BASE_DIR, "presentation.xml");

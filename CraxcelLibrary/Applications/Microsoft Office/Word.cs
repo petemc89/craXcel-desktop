@@ -3,7 +3,7 @@ using System.IO;
 
 namespace craXcel
 {
-    public class Word : OfficeApplication
+    public class Word : MicrosoftOffice
     {
         internal override string XML_BASE_DIR => "word";
         private string SETTINGS_XML_FILEPATH => Path.Combine(XML_BASE_DIR, "settings.xml");

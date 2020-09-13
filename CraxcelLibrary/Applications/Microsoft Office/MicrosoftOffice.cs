@@ -10,7 +10,7 @@ namespace craXcel
     /// <summary>
     /// Base class for Microsoft Office applications.
     /// </summary>
-    public abstract class OfficeApplication : ILockedFile
+    public abstract class MicrosoftOffice : ILockedFile
     {
         /// <summary>
         /// The file specific by the user that requires unlocking.
@@ -26,7 +26,7 @@ namespace craXcel
 
         internal abstract string XML_BASE_DIR { get; }
 
-        public OfficeApplication(string filepath)
+        public MicrosoftOffice(string filepath)
         {
             LockedFile = new FileInfo(filepath);
 

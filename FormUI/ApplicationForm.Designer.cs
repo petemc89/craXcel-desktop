@@ -33,8 +33,10 @@
             this.removeSelectedButton = new System.Windows.Forms.Button();
             this.clearAllFilesButton = new System.Windows.Forms.Button();
             this.progressBar = new System.Windows.Forms.ProgressBar();
-            this.runButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.unlockFilesButton = new System.Windows.Forms.Button();
+            this.fileListLabel = new System.Windows.Forms.Label();
+            this.changeOutputFolder = new System.Windows.Forms.Button();
+            this.outputFolderLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // fileListBox
@@ -42,17 +44,17 @@
             this.fileListBox.FormattingEnabled = true;
             this.fileListBox.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.fileListBox.ItemHeight = 21;
-            this.fileListBox.Location = new System.Drawing.Point(9, 87);
+            this.fileListBox.Location = new System.Drawing.Point(9, 74);
             this.fileListBox.Name = "fileListBox";
             this.fileListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.fileListBox.Size = new System.Drawing.Size(606, 298);
+            this.fileListBox.Size = new System.Drawing.Size(606, 277);
             this.fileListBox.TabIndex = 0;
             // 
             // addFilesButton
             // 
             this.addFilesButton.BackColor = System.Drawing.Color.SteelBlue;
             this.addFilesButton.ForeColor = System.Drawing.Color.White;
-            this.addFilesButton.Location = new System.Drawing.Point(9, 21);
+            this.addFilesButton.Location = new System.Drawing.Point(9, 12);
             this.addFilesButton.Name = "addFilesButton";
             this.addFilesButton.Size = new System.Drawing.Size(150, 30);
             this.addFilesButton.TabIndex = 1;
@@ -64,7 +66,7 @@
             // 
             this.removeSelectedButton.BackColor = System.Drawing.Color.IndianRed;
             this.removeSelectedButton.ForeColor = System.Drawing.Color.White;
-            this.removeSelectedButton.Location = new System.Drawing.Point(240, 21);
+            this.removeSelectedButton.Location = new System.Drawing.Point(240, 12);
             this.removeSelectedButton.Name = "removeSelectedButton";
             this.removeSelectedButton.Size = new System.Drawing.Size(150, 30);
             this.removeSelectedButton.TabIndex = 1;
@@ -76,7 +78,7 @@
             // 
             this.clearAllFilesButton.BackColor = System.Drawing.Color.Maroon;
             this.clearAllFilesButton.ForeColor = System.Drawing.Color.White;
-            this.clearAllFilesButton.Location = new System.Drawing.Point(465, 21);
+            this.clearAllFilesButton.Location = new System.Drawing.Point(465, 12);
             this.clearAllFilesButton.Name = "clearAllFilesButton";
             this.clearAllFilesButton.Size = new System.Drawing.Size(150, 30);
             this.clearAllFilesButton.TabIndex = 1;
@@ -90,28 +92,51 @@
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(450, 29);
             this.progressBar.TabIndex = 2;
+            this.progressBar.Tag = "";
             // 
-            // runButton
+            // unlockFilesButton
             // 
-            this.runButton.BackColor = System.Drawing.Color.Green;
-            this.runButton.ForeColor = System.Drawing.Color.White;
-            this.runButton.Location = new System.Drawing.Point(465, 399);
-            this.runButton.Name = "runButton";
-            this.runButton.Size = new System.Drawing.Size(150, 30);
-            this.runButton.TabIndex = 1;
-            this.runButton.Text = "Run!";
-            this.runButton.UseVisualStyleBackColor = false;
-            this.runButton.Click += new System.EventHandler(this.runButton_Click);
+            this.unlockFilesButton.BackColor = System.Drawing.Color.Green;
+            this.unlockFilesButton.ForeColor = System.Drawing.Color.White;
+            this.unlockFilesButton.Location = new System.Drawing.Point(465, 400);
+            this.unlockFilesButton.Name = "unlockFilesButton";
+            this.unlockFilesButton.Size = new System.Drawing.Size(150, 29);
+            this.unlockFilesButton.TabIndex = 1;
+            this.unlockFilesButton.Text = "Unlock!";
+            this.unlockFilesButton.UseVisualStyleBackColor = false;
+            this.unlockFilesButton.Click += new System.EventHandler(this.unlockFilesButton_Click);
             // 
-            // label1
+            // fileListLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(9, 67);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(36, 17);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Files:";
+            this.fileListLabel.AutoSize = true;
+            this.fileListLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.fileListLabel.Location = new System.Drawing.Point(9, 54);
+            this.fileListLabel.Name = "fileListLabel";
+            this.fileListLabel.Size = new System.Drawing.Size(36, 17);
+            this.fileListLabel.TabIndex = 3;
+            this.fileListLabel.Text = "Files:";
+            // 
+            // changeOutputFolder
+            // 
+            this.changeOutputFolder.BackColor = System.Drawing.Color.DarkGray;
+            this.changeOutputFolder.ForeColor = System.Drawing.Color.White;
+            this.changeOutputFolder.Location = new System.Drawing.Point(9, 364);
+            this.changeOutputFolder.Name = "changeOutputFolder";
+            this.changeOutputFolder.Size = new System.Drawing.Size(150, 30);
+            this.changeOutputFolder.TabIndex = 1;
+            this.changeOutputFolder.Text = "Output Folder";
+            this.changeOutputFolder.UseVisualStyleBackColor = false;
+            this.changeOutputFolder.Click += new System.EventHandler(this.changeOutputFolder_Click);
+            // 
+            // outputFolderLabel
+            // 
+            this.outputFolderLabel.AutoSize = true;
+            this.outputFolderLabel.ForeColor = System.Drawing.Color.DarkGray;
+            this.outputFolderLabel.Location = new System.Drawing.Point(165, 369);
+            this.outputFolderLabel.Name = "outputFolderLabel";
+            this.outputFolderLabel.Size = new System.Drawing.Size(19, 21);
+            this.outputFolderLabel.TabIndex = 4;
+            this.outputFolderLabel.Text = "...";
             // 
             // ApplicationForm
             // 
@@ -119,8 +144,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(624, 441);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.runButton);
+            this.Controls.Add(this.outputFolderLabel);
+            this.Controls.Add(this.changeOutputFolder);
+            this.Controls.Add(this.fileListLabel);
+            this.Controls.Add(this.unlockFilesButton);
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.clearAllFilesButton);
             this.Controls.Add(this.removeSelectedButton);
@@ -142,8 +169,10 @@
         private System.Windows.Forms.Button removeSelectedButton;
         private System.Windows.Forms.Button clearAllFilesButton;
         private System.Windows.Forms.ProgressBar progressBar;
-        private System.Windows.Forms.Button runButton;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button unlockFilesButton;
+        private System.Windows.Forms.Label fileListLabel;
+        private System.Windows.Forms.Button changeOutputFolder;
+        private System.Windows.Forms.Label outputFolderLabel;
     }
 }
 
