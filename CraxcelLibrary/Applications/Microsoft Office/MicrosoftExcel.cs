@@ -3,7 +3,7 @@ using System.IO;
 
 namespace craXcel
 {
-    public class Excel : MicrosoftOffice
+    public class MicrosoftExcel : MicrosoftOffice
     {
         internal override string XML_BASE_DIR => "xl";
         private string WORKBOOK_XML_FILEPATH => Path.Combine(XML_BASE_DIR, "workbook.xml");
@@ -12,7 +12,7 @@ namespace craXcel
         private List<string> WorkbookTagNames { get; }
         private List<string> WorksheetTagNames { get; }
 
-        public Excel(string filepath) : base(filepath) 
+        public MicrosoftExcel(string filepath) : base(filepath) 
         {
             WorkbookTagNames = new List<string>()
             {

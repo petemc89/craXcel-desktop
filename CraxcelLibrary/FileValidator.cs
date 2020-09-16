@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.IO;
 using System.Text;
 using static CraxcelLibrary.Enums;
@@ -8,7 +9,7 @@ namespace CraxcelLibrary.Applications
 {
     public class FileValidator
     {
-        private List<string> MICROSOFT_EXCEL_EXTENSIONS { get;  } = new List<string>()
+        private List<string> MICROSOFT_EXCEL_EXTENSIONS { get; } = new List<string>()
         {
             ".xlsm",
             ".xlsx"

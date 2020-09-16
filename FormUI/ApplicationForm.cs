@@ -64,7 +64,7 @@ namespace FormUI
             foreach (var item in fileListBox.Items)
             {
                 var filePath = item.ToString();
-                var wasSuccessful = CraxcelLibrary.Program.Main(filePath, outputFolderLabel.Text);
+                var wasSuccessful = CraxcelLibrary.CraxcelProcessor.UnlockFile(filePath, outputFolderLabel.Text);
 
                 if (wasSuccessful)
                 {

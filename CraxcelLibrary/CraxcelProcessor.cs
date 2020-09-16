@@ -7,9 +7,9 @@ using static CraxcelLibrary.Enums;
 
 namespace CraxcelLibrary
 {
-    public static class Program
+    public static class CraxcelProcessor
     {
-        public static bool Main(string filePath, string outputFolder)
+        public static bool UnlockFile(string filePath, string outputFolder = "")
         {
             try
             {
@@ -20,13 +20,13 @@ namespace CraxcelLibrary
                 switch (fileValidator.IdentifyApplication())
                 {
                     case SupportedApplication.MicrosoftExcel:
-                        lockedFile = new Excel(fileValidator.File.FullName);
+                        lockedFile = new MicrosoftExcel(fileValidator.File.FullName);
                         break;
                     case SupportedApplication.MicrosoftPowerpoint:
-                        lockedFile = new Powerpoint(fileValidator.File.FullName);
+                        lockedFile = new MicrosoftPowerpoint(fileValidator.File.FullName);
                         break;
                     case SupportedApplication.MicrosoftWord:
-                        lockedFile = new Word(fileValidator.File.FullName);
+                        lockedFile = new MicrosoftWord(fileValidator.File.FullName);
                         break;
                     default:
                         return false;
