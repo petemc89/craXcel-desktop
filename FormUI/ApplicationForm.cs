@@ -15,7 +15,7 @@ namespace FormUI
         public ApplicationForm()
         {
             InitializeComponent();
-            UserHomeDirectory = CraxcelLibrary.ApplicationSettings.CRAXCEL_DIR;
+            UserHomeDirectory = ApplicationSettings.CRAXCEL_DIR;
         }
 
         private void addFilesButton_Click(object sender, EventArgs e)
@@ -105,7 +105,7 @@ namespace FormUI
                 var filePath = item.ToString();
                 var file = new FileInfo(filePath);
 
-                var wasSuccessful = CraxcelLibrary.CraxcelProcessor.UnlockFile(filePath, logger);
+                var wasSuccessful = CraxcelProcessor.UnlockFile(filePath, logger);
 
                 if (wasSuccessful)
                 {
@@ -170,21 +170,6 @@ namespace FormUI
                     var btn = (Button)control;
                     btn.Enabled = true;
                 }
-            }
-        }
-
-        private bool AreYouSureDialog()
-        {
-            var result = MessageBox.Show("Ready To Start Craxcel?", "Confirm", MessageBoxButtons.YesNo);
-
-            if (result == DialogResult.Yes)
-            {
-                return true;
-            }
-
-            else
-            {
-                return false;
             }
         }
     }
