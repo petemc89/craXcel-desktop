@@ -35,8 +35,7 @@
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.unlockFilesButton = new System.Windows.Forms.Button();
             this.fileListLabel = new System.Windows.Forms.Label();
-            this.changeOutputFolder = new System.Windows.Forms.Button();
-            this.outputFolderLabel = new System.Windows.Forms.Label();
+            this.openOptionsFormButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // fileListBox
@@ -47,7 +46,7 @@
             this.fileListBox.Location = new System.Drawing.Point(9, 74);
             this.fileListBox.Name = "fileListBox";
             this.fileListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.fileListBox.Size = new System.Drawing.Size(606, 277);
+            this.fileListBox.Size = new System.Drawing.Size(606, 319);
             this.fileListBox.TabIndex = 0;
             // 
             // addFilesButton
@@ -90,7 +89,7 @@
             // 
             this.progressBar.Location = new System.Drawing.Point(9, 400);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(450, 29);
+            this.progressBar.Size = new System.Drawing.Size(369, 29);
             this.progressBar.TabIndex = 2;
             this.progressBar.Tag = "";
             // 
@@ -116,27 +115,17 @@
             this.fileListLabel.TabIndex = 3;
             this.fileListLabel.Text = "Files:";
             // 
-            // changeOutputFolder
+            // openOptionsFormButton
             // 
-            this.changeOutputFolder.BackColor = System.Drawing.Color.DarkGray;
-            this.changeOutputFolder.ForeColor = System.Drawing.Color.White;
-            this.changeOutputFolder.Location = new System.Drawing.Point(9, 364);
-            this.changeOutputFolder.Name = "changeOutputFolder";
-            this.changeOutputFolder.Size = new System.Drawing.Size(150, 30);
-            this.changeOutputFolder.TabIndex = 1;
-            this.changeOutputFolder.Text = "Output Folder";
-            this.changeOutputFolder.UseVisualStyleBackColor = false;
-            this.changeOutputFolder.Click += new System.EventHandler(this.changeOutputFolder_Click);
-            // 
-            // outputFolderLabel
-            // 
-            this.outputFolderLabel.AutoSize = true;
-            this.outputFolderLabel.ForeColor = System.Drawing.Color.DarkGray;
-            this.outputFolderLabel.Location = new System.Drawing.Point(165, 369);
-            this.outputFolderLabel.Name = "outputFolderLabel";
-            this.outputFolderLabel.Size = new System.Drawing.Size(19, 21);
-            this.outputFolderLabel.TabIndex = 4;
-            this.outputFolderLabel.Text = "...";
+            this.openOptionsFormButton.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.openOptionsFormButton.ForeColor = System.Drawing.Color.DimGray;
+            this.openOptionsFormButton.Location = new System.Drawing.Point(384, 400);
+            this.openOptionsFormButton.Name = "openOptionsFormButton";
+            this.openOptionsFormButton.Size = new System.Drawing.Size(75, 29);
+            this.openOptionsFormButton.TabIndex = 1;
+            this.openOptionsFormButton.Text = "Options";
+            this.openOptionsFormButton.UseVisualStyleBackColor = false;
+            this.openOptionsFormButton.Click += new System.EventHandler(this.openOptionsFormButton_Click);
             // 
             // ApplicationForm
             // 
@@ -144,8 +133,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(624, 441);
-            this.Controls.Add(this.outputFolderLabel);
-            this.Controls.Add(this.changeOutputFolder);
+            this.Controls.Add(this.openOptionsFormButton);
             this.Controls.Add(this.fileListLabel);
             this.Controls.Add(this.unlockFilesButton);
             this.Controls.Add(this.progressBar);
@@ -155,6 +143,7 @@
             this.Controls.Add(this.fileListBox);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
             this.Name = "ApplicationForm";
             this.Text = "craXcel";
             this.ResumeLayout(false);
@@ -171,8 +160,7 @@
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Button unlockFilesButton;
         private System.Windows.Forms.Label fileListLabel;
-        private System.Windows.Forms.Button changeOutputFolder;
-        private System.Windows.Forms.Label outputFolderLabel;
+        private System.Windows.Forms.Button openOptionsFormButton;
     }
 }
 

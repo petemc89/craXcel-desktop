@@ -5,8 +5,8 @@ namespace craXcel
 {
     public class MicrosoftPowerpoint : MicrosoftOffice
     {
-        internal override string XML_BASE_DIR => "ppt";
-        private string PRESENTATION_XML_FILEPATH => Path.Combine(XML_BASE_DIR, "presentation.xml");
+        internal override string XML_ROOT_DIR => "ppt";
+        private string PRESENTATION_XML_FILEPATH => Path.Combine(XML_ROOT_DIR, "presentation.xml");
         private List<string> PresentationTagNames { get; }
 
         public MicrosoftPowerpoint(string filepath) : base(filepath) 
@@ -24,7 +24,7 @@ namespace craXcel
 
         private void RemovePresentationProtection()
         {
-            var xmlFilePath = Path.Combine(TempDirectory.FullName, PRESENTATION_XML_FILEPATH);
+            var xmlFilePath = Path.Combine(TempProcessingDir.FullName, PRESENTATION_XML_FILEPATH);
 
             RemoveXMLElementsByTagNames(xmlFilePath, PresentationTagNames);
         }

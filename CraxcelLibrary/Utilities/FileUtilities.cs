@@ -24,5 +24,15 @@ namespace craXcel.Utilities
                 path = Path.Combine(dir, fileName + " (" + i + ")" + fileExt);
             }
         }
+
+        public static void CreateDirectoryIfNotExists(DirectoryInfo directory)
+        {
+            var exists = directory.Exists;
+
+            if (exists == false)
+            {
+                directory.Create();
+            }
+        }
     }
 }

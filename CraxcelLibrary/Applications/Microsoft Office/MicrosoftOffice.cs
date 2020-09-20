@@ -1,4 +1,5 @@
 ﻿using craXcel.Utilities;
+using CraxcelLibrary;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,29 +21,36 @@ namespace craXcel
         /// <summary>
         /// The temporary directory where craXcel performs operations on the locked file to unlock it.
         /// </summary>
-        internal DirectoryInfo TempDirectory { get; }
+        internal DirectoryInfo TempProcessingDir { get; }
 
-        private string VBA_FILEPATH { get; }
+        /// <summary>
+        /// The filename for VBA project binary files, which is consistent across all MicrosoftOffice applications.
+        /// </summary>
+        private const string VBA_FILENAME = "vbaProject.bin";
 
-        internal abstract string XML_BASE_DIR { get; }
+        /// <summary>
+        /// The root directory of a MicrosoftOffice application's XML file structure, which differs with each application.
+        /// </summary>
+        internal abstract string XML_ROOT_DIR { get; }
 
         public MicrosoftOffice(string filepath)
-        {
+        {            
             LockedFile = new FileInfo(filepath);
 
-            var tempDirectoryPath = Path.Combine(Path.GetTempPath(), "craxcel\\{" + Guid.NewGuid() + "}");
-            Directory.CreateDirectory(tempDirectoryPath);
-
-            TempDirectory = new DirectoryInfo(tempDirectoryPath);
-
-            VBA_FILEPATH = Path.Combine(XML_BASE_DIR, "vbaProject.bin");
+            var tempProcessingDir = Path.Combine(ApplicationSettings.TEMP_DIR.FullName, "{" + Guid.NewGuid() + "}");
+            TempProcessingDir = new DirectoryInfo(tempProcessingDir);
         }
 
         public void Unlock()
         {
             Decompile();
             RemoveApplicationSpecificProtection();
-            RemoveVBAProtection();
+
+            if (UserOptions.UnlockVBA)
+            {
+                RemoveVBAProtection();
+            }
+
             Recompile();
             Clean();
         }
@@ -52,7 +60,7 @@ namespace craXcel
         /// </summary>
         private void Decompile()
         {
-            ZipFile.ExtractToDirectory(LockedFile.FullName, TempDirectory.FullName);
+            ZipFile.ExtractToDirectory(LockedFile.FullName, TempProcessingDir.FullName);
         }
 
         /// <summary>
@@ -60,10 +68,13 @@ namespace craXcel
         /// </summary>
         private void Recompile()
         {
-            var newFileName = LockedFile.Name.Replace(LockedFile.Extension, "_craXcel" + LockedFile.Extension);
-            var destinationArchiveFileName = FileUtilities.GetUniqueFileName(Path.Combine(LockedFile.DirectoryName, newFileName));
+            var newFileName = LockedFile.Name.Replace(LockedFile.Extension, $"_{ApplicationSettings.APP_NAME}{LockedFile.Extension}");
 
-            ZipFile.CreateFromDirectory(TempDirectory.FullName, destinationArchiveFileName);
+            var fullUnlockedFilePath = Path.Combine(ApplicationSettings.CRAXCEL_DIR.FullName, newFileName);
+
+            var uniqueUnlockedFilePath = FileUtilities.GetUniqueFileName(fullUnlockedFilePath);
+
+            ZipFile.CreateFromDirectory(TempProcessingDir.FullName, uniqueUnlockedFilePath);
         }
 
         /// <summary>
@@ -71,7 +82,7 @@ namespace craXcel
         /// </summary>
         private void Clean()
         {
-            Directory.Delete(TempDirectory.FullName, true);
+            Directory.Delete(TempProcessingDir.FullName, true);
         }
 
         /// <summary>
@@ -109,9 +120,14 @@ namespace craXcel
             }
         }
 
+        /// <summary>
+        /// Removes VBA Project password protection by modifying the underlying binary file.
+        /// </summary>
         private void RemoveVBAProtection()
         {
-            var filePath = Path.Combine(TempDirectory.FullName, VBA_FILEPATH);
+            // TO-DO: Currently this states the workbook is corrupt and requires some manual steps on the users part to finish the successful unlocking, fix this.
+
+            var filePath = Path.Combine(TempProcessingDir.FullName, XML_ROOT_DIR, VBA_FILENAME);
 
             var fileExists = File.Exists(filePath);
 

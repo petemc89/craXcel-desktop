@@ -1,36 +1,30 @@
 ﻿using craXcel;
-using CraxcelLibrary.Applications;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.IO;
 using static CraxcelLibrary.Enums;
 
 namespace CraxcelLibrary
 {
+    /// <summary>
+    /// Main processing class of the application.
+    /// </summary>
     public static class CraxcelProcessor
     {
-        public static bool UnlockFile(string filePath, string outputFolder = "")
+
+        /// <summary>
+        /// Unlocks the specified file within the option parameters set by the user.
+        /// </summary>
+        /// <param name="filePath">The filepath of the file to unlock.</param>
+        /// <returns>Bool stating if the file was successfully unlocked.</returns>
+        public static bool UnlockFile(string filePath)
         {
             try
             {
-                ILockedFile lockedFile;
+                var file = new FileInfo(filePath);
 
-                var fileValidator = new FileValidator(filePath);
+                SupportedApplication application = IdentifyApplication(file);
 
-                switch (fileValidator.IdentifyApplication())
-                {
-                    case SupportedApplication.MicrosoftExcel:
-                        lockedFile = new MicrosoftExcel(fileValidator.File.FullName);
-                        break;
-                    case SupportedApplication.MicrosoftPowerpoint:
-                        lockedFile = new MicrosoftPowerpoint(fileValidator.File.FullName);
-                        break;
-                    case SupportedApplication.MicrosoftWord:
-                        lockedFile = new MicrosoftWord(fileValidator.File.FullName);
-                        break;
-                    default:
-                        return false;
-                }
+                ILockedFile lockedFile = CreateLockedFileInstance(file, application);
 
                 lockedFile.Unlock();
 
@@ -39,6 +33,30 @@ namespace CraxcelLibrary
             catch
             {
                 return false;
+            }
+        }
+
+        private static SupportedApplication IdentifyApplication(FileInfo file)
+        {
+            SupportedApplication application = SupportedApplication._unsupported;
+
+            ApplicationSettings.SUPPORTED_APPLICATIONS.TryGetValue(file.Extension, out application);
+
+            return application;
+        }
+
+        private static ILockedFile CreateLockedFileInstance(FileInfo file, SupportedApplication application)
+        {
+            switch (application)
+            {
+                case SupportedApplication.MicrosoftExcel:
+                    return new MicrosoftExcel(file.FullName);
+                case SupportedApplication.MicrosoftPowerpoint:
+                    return new MicrosoftPowerpoint(file.FullName);
+                case SupportedApplication.MicrosoftWord:
+                    return new MicrosoftWord(file.FullName);
+                default:
+                    return null;
             }
         }
     }

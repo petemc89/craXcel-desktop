@@ -1,62 +1,90 @@
-﻿using craXcel;
-using CraxcelLibrary.Applications;
-using System;
-using System.Collections.Generic;
+﻿using System;
+using System.Diagnostics;
 using System.IO;
+using System.Text;
 using System.Windows.Forms;
-using static CraxcelLibrary.Enums;
 
 namespace FormUI
 {
     public partial class ApplicationForm : Form
     {
-        private DirectoryInfo UserHomeDirectory {get;}
+        private DirectoryInfo UserHomeDirectory { get; }
 
         public ApplicationForm()
         {
             InitializeComponent();
-
-            var userProfileSpecialFolder = Environment.SpecialFolder.UserProfile;
-
-            UserHomeDirectory = new DirectoryInfo(Environment.GetFolderPath(userProfileSpecialFolder));
-        }
-
-        private void CreateOutputFolderIfNotExists()
-        {
-            var outputFolder = new DirectoryInfo(Path.Combine(UserHomeDirectory.FullName, "craxcel"));
-            if (outputFolder.Exists == false)
-            {
-                outputFolder.Create();
-            }
+            UserHomeDirectory = CraxcelLibrary.ApplicationSettings.CRAXCEL_DIR;
         }
 
         private void addFilesButton_Click(object sender, EventArgs e)
         {
+            DisableAllButtons();
+
             OpenFileDialog openFileDialog = new OpenFileDialog()
             {
                 InitialDirectory = UserHomeDirectory.FullName,
-                Multiselect = true
+                Multiselect = true,
+                Filter = SupportedApplicationsFileDialogFilter()
             };
 
             openFileDialog.ShowDialog();
 
-            fileListBox.Items.AddRange(openFileDialog.FileNames);
+            foreach (var item in openFileDialog.FileNames)
+            {
+                if (fileListBox.Items.Contains(item) == false)
+                {
+                    fileListBox.Items.Add(item);
+                }
+            }
+
+            string SupportedApplicationsFileDialogFilter()
+            {
+                StringBuilder sb = new StringBuilder();
+
+                sb.Append("Supported Applications |");
+
+                foreach (var extension in CraxcelLibrary.ApplicationSettings.SUPPORTED_APPLICATIONS.Keys)
+                {
+                    sb.Append($"*{extension};");
+                }
+
+                return sb.ToString();
+            }
+
+            EnableAllButtons();
         }
 
         private void removeSelectedButton_Click(object sender, EventArgs e)
         {
+            DisableAllButtons();
+
             fileListBox.Items.Remove(fileListBox.SelectedItem);
+
+            EnableAllButtons();
         }
 
         private void clearAllFilesButton_Click(object sender, EventArgs e)
         {
+            DisableAllButtons();
+
             fileListBox.Items.Clear();
+
+            EnableAllButtons();
         }
 
         private void unlockFilesButton_Click(object sender, EventArgs e)
         {
-            unlockFilesButton.Enabled = false;        
-            
+            DisableAllButtons();
+
+            var confirmation = MessageBox.Show("Ready To Start Craxcel?", "Confirm", MessageBoxButtons.YesNo);
+
+            if (confirmation == DialogResult.No || fileListBox.Items.Count == 0)
+            {
+                EnableAllButtons();
+
+                return;
+            }
+
             progressBar.Maximum = fileListBox.Items.Count;
 
             var filesUnlocked = 0;
@@ -64,7 +92,7 @@ namespace FormUI
             foreach (var item in fileListBox.Items)
             {
                 var filePath = item.ToString();
-                var wasSuccessful = CraxcelLibrary.CraxcelProcessor.UnlockFile(filePath, outputFolderLabel.Text);
+                var wasSuccessful = CraxcelLibrary.CraxcelProcessor.UnlockFile(filePath);
 
                 if (wasSuccessful)
                 {
@@ -74,21 +102,66 @@ namespace FormUI
                 progressBar.Value++;
             }
 
-            MessageBox.Show($"{filesUnlocked}/{fileListBox.Items.Count} files unlocked successfully.\nCheck the log for further details.", "Completed");
+            MessageBox.Show($"{filesUnlocked}/{fileListBox.Items.Count} files unlocked.", "Complete");
 
-            fileListBox.Items.Clear();
+            Process.Start("explorer.exe", CraxcelLibrary.ApplicationSettings.CRAXCEL_DIR.FullName);
 
-            unlockFilesButton.Enabled = true;
+            ResetForm();
+
+            EnableAllButtons();
         }
 
-        private void changeOutputFolder_Click(object sender, EventArgs e)
+        private void openOptionsFormButton_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog()
-            {
-                RootFolder = Environment.SpecialFolder.UserProfile
-            };
+            var optionsForm = new UserOptionsForm();
 
-            folderBrowserDialog.ShowDialog();
+            optionsForm.Show();
         }
+
+        private void ResetForm()
+        {
+            fileListBox.Items.Clear();
+            progressBar.Value = 0;
+        }
+
+        private void DisableAllButtons()
+        {
+            foreach (Control control in this.Controls)
+            {
+                if (control is Button)
+                {
+                    var btn = (Button)control;
+                    btn.Enabled = false;
+                }
+            }
+        }
+
+        private void EnableAllButtons()
+        {
+            foreach (Control control in this.Controls)
+            {
+                if (control is Button)
+                {
+                    var btn = (Button)control;
+                    btn.Enabled = true;
+                }
+            }
+        }
+
+        private bool AreYouSureDialog()
+        {
+            var result = MessageBox.Show("Ready To Start Craxcel?", "Confirm", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
+            {
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }

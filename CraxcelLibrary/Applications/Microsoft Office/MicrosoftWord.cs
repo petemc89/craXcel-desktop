@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using CraxcelLibrary;
+using System.Collections.Generic;
 using System.IO;
 
 namespace craXcel
 {
     public class MicrosoftWord : MicrosoftOffice
     {
-        internal override string XML_BASE_DIR => "word";
-        private string SETTINGS_XML_FILEPATH => Path.Combine(XML_BASE_DIR, "settings.xml");
+        internal override string XML_ROOT_DIR => "word";
+        private string SETTINGS_XML_FILEPATH => Path.Combine(XML_ROOT_DIR, "settings.xml");
         private List<string> SettingsTagNames { get; } 
 
         public MicrosoftWord(string filepath) : base(filepath) 
@@ -25,7 +26,7 @@ namespace craXcel
 
         private void RemoveSettingsProtection()
         {
-            var xmlFilePath = Path.Combine(TempDirectory.FullName, SETTINGS_XML_FILEPATH);
+            var xmlFilePath = Path.Combine(TempProcessingDir.FullName, SETTINGS_XML_FILEPATH);
 
             RemoveXMLElementsByTagNames(xmlFilePath, SettingsTagNames);
         }
