@@ -1,6 +1,8 @@
-﻿using System;
+﻿using CraxcelLibrary;
+using System;
 using System.Diagnostics;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 
@@ -58,7 +60,12 @@ namespace FormUI
         {
             DisableAllButtons();
 
-            fileListBox.Items.Remove(fileListBox.SelectedItem);
+            var selectedItems = fileListBox.SelectedItems;
+
+            for (int i = selectedItems.Count - 1; i >= 0; i--)
+            {
+                fileListBox.Items.Remove(selectedItems[i]);
+            }                
 
             EnableAllButtons();
         }
@@ -76,7 +83,7 @@ namespace FormUI
         {
             DisableAllButtons();
 
-            var confirmation = MessageBox.Show("Ready To Start Craxcel?", "Confirm", MessageBoxButtons.YesNo);
+            var confirmation = MessageBox.Show("Ready to start craXcel?", "Confirm", MessageBoxButtons.YesNo);
 
             if (confirmation == DialogResult.No || fileListBox.Items.Count == 0)
             {
@@ -87,24 +94,42 @@ namespace FormUI
 
             progressBar.Maximum = fileListBox.Items.Count;
 
+            var logger = new Logger();
+            logger.Add($"craXcel started");
+            logger.Add($"{fileListBox.Items.Count} files selected");
+
             var filesUnlocked = 0;
 
             foreach (var item in fileListBox.Items)
             {
                 var filePath = item.ToString();
-                var wasSuccessful = CraxcelLibrary.CraxcelProcessor.UnlockFile(filePath);
+                var file = new FileInfo(filePath);
+
+                var wasSuccessful = CraxcelLibrary.CraxcelProcessor.UnlockFile(filePath, logger);
 
                 if (wasSuccessful)
                 {
+                    logger.Add($"Successfully unlocked: {file.Name} ({file.FullName})");
                     filesUnlocked++;
+                }
+                else
+                {
+                    logger.Add($"Failed to unlock: {file.Name} ({file.FullName})");
                 }
 
                 progressBar.Value++;
             }
 
+            logger.Add("craXcel finished");
+
+            logger.Save();
+
             MessageBox.Show($"{filesUnlocked}/{fileListBox.Items.Count} files unlocked.", "Complete");
 
-            Process.Start("explorer.exe", CraxcelLibrary.ApplicationSettings.CRAXCEL_DIR.FullName);
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                Process.Start("explorer.exe", ApplicationSettings.CRAXCEL_DIR.FullName);
+            }
 
             ResetForm();
 
@@ -162,6 +187,5 @@ namespace FormUI
                 return false;
             }
         }
-
     }
 }

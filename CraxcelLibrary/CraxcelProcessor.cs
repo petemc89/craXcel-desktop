@@ -16,7 +16,7 @@ namespace CraxcelLibrary
         /// </summary>
         /// <param name="filePath">The filepath of the file to unlock.</param>
         /// <returns>Bool stating if the file was successfully unlocked.</returns>
-        public static bool UnlockFile(string filePath)
+        public static bool UnlockFile(string filePath, Logger logger)
         {
             try
             {

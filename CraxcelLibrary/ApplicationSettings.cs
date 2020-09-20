@@ -20,6 +20,8 @@ namespace CraxcelLibrary
         /// </summary>
         public static DirectoryInfo CRAXCEL_DIR { get { return GetCraxcelDir(); } }
 
+        public static DirectoryInfo LOG_DIR { get { return GetLogDir(); } }
+
         /// <summary>
         /// The directory where file operations are performed.
         /// </summary>
@@ -66,6 +68,21 @@ namespace CraxcelLibrary
             string craxcelTempFolder = Path.Combine(userTempFolder, APP_NAME);
 
             var dir = new DirectoryInfo(craxcelTempFolder);
+
+            FileUtilities.CreateDirectoryIfNotExists(dir);
+
+            return dir;
+        }
+
+        /// <summary>
+        /// Gets the directory where user logs will be saved.
+        /// </summary>
+        /// <returns></returns>
+        private static DirectoryInfo GetLogDir()
+        {
+            var logPath = Path.Combine(CRAXCEL_DIR.FullName, "Logs");
+
+            var dir = new DirectoryInfo(logPath);
 
             FileUtilities.CreateDirectoryIfNotExists(dir);
 

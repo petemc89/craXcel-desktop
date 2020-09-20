@@ -36,17 +36,19 @@
             this.unlockFilesButton = new System.Windows.Forms.Button();
             this.fileListLabel = new System.Windows.Forms.Label();
             this.openOptionsFormButton = new System.Windows.Forms.Button();
+            this.craxcelNote = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // fileListBox
             // 
+            this.fileListBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.fileListBox.FormattingEnabled = true;
             this.fileListBox.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.fileListBox.ItemHeight = 21;
-            this.fileListBox.Location = new System.Drawing.Point(9, 74);
+            this.fileListBox.ItemHeight = 17;
+            this.fileListBox.Location = new System.Drawing.Point(10, 65);
             this.fileListBox.Name = "fileListBox";
-            this.fileListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.fileListBox.Size = new System.Drawing.Size(606, 319);
+            this.fileListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.fileListBox.Size = new System.Drawing.Size(609, 310);
             this.fileListBox.TabIndex = 0;
             // 
             // addFilesButton
@@ -109,7 +111,7 @@
             // 
             this.fileListLabel.AutoSize = true;
             this.fileListLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.fileListLabel.Location = new System.Drawing.Point(9, 54);
+            this.fileListLabel.Location = new System.Drawing.Point(9, 48);
             this.fileListLabel.Name = "fileListLabel";
             this.fileListLabel.Size = new System.Drawing.Size(36, 17);
             this.fileListLabel.TabIndex = 3;
@@ -127,12 +129,25 @@
             this.openOptionsFormButton.UseVisualStyleBackColor = false;
             this.openOptionsFormButton.Click += new System.EventHandler(this.openOptionsFormButton_Click);
             // 
+            // craxcelNote
+            // 
+            this.craxcelNote.AutoSize = true;
+            this.craxcelNote.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.craxcelNote.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.craxcelNote.Location = new System.Drawing.Point(9, 377);
+            this.craxcelNote.Name = "craxcelNote";
+            this.craxcelNote.Size = new System.Drawing.Size(474, 13);
+            this.craxcelNote.TabIndex = 4;
+            this.craxcelNote.Text = "craXcel will never overwrite your files, it will always create an unlocked copy o" +
+    "f the original.";
+            // 
             // ApplicationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(624, 441);
+            this.Controls.Add(this.craxcelNote);
             this.Controls.Add(this.openOptionsFormButton);
             this.Controls.Add(this.fileListLabel);
             this.Controls.Add(this.unlockFilesButton);
@@ -142,6 +157,7 @@
             this.Controls.Add(this.addFilesButton);
             this.Controls.Add(this.fileListBox);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "ApplicationForm";
@@ -161,6 +177,7 @@
         private System.Windows.Forms.Button unlockFilesButton;
         private System.Windows.Forms.Label fileListLabel;
         private System.Windows.Forms.Button openOptionsFormButton;
+        private System.Windows.Forms.Label craxcelNote;
     }
 }
 
