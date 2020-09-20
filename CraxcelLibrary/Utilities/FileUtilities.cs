@@ -25,6 +25,10 @@ namespace craXcel.Utilities
             }
         }
 
+        /// <summary>
+        /// Creates a directory if it doesn't already exist.
+        /// </summary>
+        /// <param name="directory">The directory to be checked and created.</param>
         public static void CreateDirectoryIfNotExists(DirectoryInfo directory)
         {
             var exists = directory.Exists;

@@ -3,6 +3,9 @@ using System.IO;
 
 namespace craXcel
 {
+    /// <summary>
+    /// Class for unlocking a Microsoft Office Excel application.
+    /// </summary>
     internal class MicrosoftExcel : MicrosoftOffice
     {
         internal override string XML_ROOT_DIR => "xl";

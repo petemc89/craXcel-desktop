@@ -24,6 +24,10 @@ namespace CraxcelLibrary
             LogFile = new FileInfo(logPath);
         }
 
+        /// <summary>
+        /// Adds the string to the log collection.
+        /// </summary>
+        /// <param name="logMessage"></param>
         public void Add(string logMessage)
         {
             string dateTime = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
@@ -33,6 +37,9 @@ namespace CraxcelLibrary
             Log.Add(fullLogMessage);
         }
 
+        /// <summary>
+        /// Saves the log collection.
+        /// </summary>
         public void Save()
         {
             TextWriter tw = new StreamWriter(LogFile.FullName);

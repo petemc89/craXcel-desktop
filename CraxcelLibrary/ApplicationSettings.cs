@@ -8,6 +8,9 @@ using static System.Environment;
 
 namespace CraxcelLibrary
 {
+    /// <summary>
+    /// Application level settings, such as directories.
+    /// </summary>
     public static class ApplicationSettings
     {
         /// <summary>
@@ -16,10 +19,13 @@ namespace CraxcelLibrary
         public static readonly string APP_NAME = "craXcel";
 
         /// <summary>
-        /// The directory where unlocked files and logs are saved to.
+        /// The directory where unlocked files are saved to.
         /// </summary>
         public static DirectoryInfo CRAXCEL_DIR { get { return GetCraxcelDir(); } }
 
+        /// <summary>
+        /// The directory where user logs are saved to.
+        /// </summary>
         public static DirectoryInfo LOG_DIR { get { return GetLogDir(); } }
 
         /// <summary>

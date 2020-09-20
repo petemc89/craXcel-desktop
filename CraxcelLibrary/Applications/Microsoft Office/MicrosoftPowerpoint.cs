@@ -3,6 +3,9 @@ using System.IO;
 
 namespace craXcel
 {
+    /// <summary>
+    /// Class for unlocking a Microsoft Office Powerpoint application.
+    /// </summary>
     public class MicrosoftPowerpoint : MicrosoftOffice
     {
         internal override string XML_ROOT_DIR => "ppt";

@@ -4,6 +4,9 @@ using System.IO;
 
 namespace craXcel
 {
+    /// <summary>
+    /// Class for unlocking a Microsoft Office Word application.
+    /// </summary>
     public class MicrosoftWord : MicrosoftOffice
     {
         internal override string XML_ROOT_DIR => "word";
