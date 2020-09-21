@@ -20,7 +20,7 @@ namespace FormUI
 
         private void addFilesButton_Click(object sender, EventArgs e)
         {
-            DisableAllButtons();
+            ToggleAllButtons(false);
 
             OpenFileDialog openFileDialog = new OpenFileDialog()
             {
@@ -45,7 +45,7 @@ namespace FormUI
 
                 sb.Append("Supported Applications |");
 
-                foreach (var extension in CraxcelLibrary.ApplicationSettings.SUPPORTED_APPLICATIONS.Keys)
+                foreach (var extension in ApplicationSettings.SUPPORTED_APPLICATIONS.Keys)
                 {
                     sb.Append($"*{extension};");
                 }
@@ -53,12 +53,12 @@ namespace FormUI
                 return sb.ToString();
             }
 
-            EnableAllButtons();
+            ToggleAllButtons(true);
         }
 
         private void removeSelectedButton_Click(object sender, EventArgs e)
         {
-            DisableAllButtons();
+            ToggleAllButtons(false);
 
             var selectedItems = fileListBox.SelectedItems;
 
@@ -67,27 +67,27 @@ namespace FormUI
                 fileListBox.Items.Remove(selectedItems[i]);
             }                
 
-            EnableAllButtons();
+            ToggleAllButtons(true);
         }
 
         private void clearAllFilesButton_Click(object sender, EventArgs e)
         {
-            DisableAllButtons();
+            ToggleAllButtons(false);
 
             fileListBox.Items.Clear();
 
-            EnableAllButtons();
+            ToggleAllButtons(true);
         }
 
         private void unlockFilesButton_Click(object sender, EventArgs e)
         {
-            DisableAllButtons();
+            ToggleAllButtons(false);
 
             var confirmation = MessageBox.Show("Ready to start craXcel?", "Confirm", MessageBoxButtons.YesNo);
 
             if (confirmation == DialogResult.No || fileListBox.Items.Count == 0)
             {
-                EnableAllButtons();
+                ToggleAllButtons(true);
 
                 return;
             }
@@ -120,20 +120,30 @@ namespace FormUI
                 progressBar.Value++;
             }
 
+            logger.Add($"{filesUnlocked}/{fileListBox.Items.Count} files unlocked");
             logger.Add("craXcel finished");
 
             logger.Save();
 
             MessageBox.Show($"{filesUnlocked}/{fileListBox.Items.Count} files unlocked.", "Complete");
 
+            // TO-DO - Implement additional OS support
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                Process.Start("explorer.exe", ApplicationSettings.CRAXCEL_DIR.FullName);
+            {                
+                try
+                {
+                    Process.Start("explorer.exe", ApplicationSettings.CRAXCEL_DIR.FullName);
+                    Process.Start("notepad.exe", logger.LogFile.FullName);
+                }
+                catch
+                {
+                    
+                }
             }
 
             ResetForm();
 
-            EnableAllButtons();
+            ToggleAllButtons(true);
         }
 
         private void openOptionsFormButton_Click(object sender, EventArgs e)
@@ -149,26 +159,14 @@ namespace FormUI
             progressBar.Value = 0;
         }
 
-        private void DisableAllButtons()
+        private void ToggleAllButtons(bool enableButtons)
         {
             foreach (Control control in this.Controls)
             {
                 if (control is Button)
                 {
                     var btn = (Button)control;
-                    btn.Enabled = false;
-                }
-            }
-        }
-
-        private void EnableAllButtons()
-        {
-            foreach (Control control in this.Controls)
-            {
-                if (control is Button)
-                {
-                    var btn = (Button)control;
-                    btn.Enabled = true;
+                    btn.Enabled = enableButtons;
                 }
             }
         }

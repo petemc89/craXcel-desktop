@@ -12,7 +12,7 @@ namespace CraxcelLibrary
     {
         public List<string> Log { get; } = new List<string>();
 
-        private FileInfo LogFile { get; }
+        public FileInfo LogFile { get; }
 
         public Logger()
         {
