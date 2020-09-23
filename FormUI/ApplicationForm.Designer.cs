@@ -33,11 +33,11 @@
             this.addFilesButton = new System.Windows.Forms.Button();
             this.removeSelectedButton = new System.Windows.Forms.Button();
             this.clearAllFilesButton = new System.Windows.Forms.Button();
-            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.unlockFilesButton = new System.Windows.Forms.Button();
             this.fileListLabel = new System.Windows.Forms.Label();
             this.openOptionsFormButton = new System.Windows.Forms.Button();
             this.craxcelNote = new System.Windows.Forms.Label();
+            this.githubLink = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // fileListBox
@@ -88,19 +88,11 @@
             this.clearAllFilesButton.UseVisualStyleBackColor = false;
             this.clearAllFilesButton.Click += new System.EventHandler(this.clearAllFilesButton_Click);
             // 
-            // progressBar
-            // 
-            this.progressBar.Location = new System.Drawing.Point(9, 400);
-            this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(369, 29);
-            this.progressBar.TabIndex = 2;
-            this.progressBar.Tag = "";
-            // 
             // unlockFilesButton
             // 
             this.unlockFilesButton.BackColor = System.Drawing.Color.Green;
             this.unlockFilesButton.ForeColor = System.Drawing.Color.White;
-            this.unlockFilesButton.Location = new System.Drawing.Point(465, 400);
+            this.unlockFilesButton.Location = new System.Drawing.Point(240, 400);
             this.unlockFilesButton.Name = "unlockFilesButton";
             this.unlockFilesButton.Size = new System.Drawing.Size(150, 29);
             this.unlockFilesButton.TabIndex = 1;
@@ -122,7 +114,7 @@
             // 
             this.openOptionsFormButton.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.openOptionsFormButton.ForeColor = System.Drawing.Color.DimGray;
-            this.openOptionsFormButton.Location = new System.Drawing.Point(384, 400);
+            this.openOptionsFormButton.Location = new System.Drawing.Point(9, 400);
             this.openOptionsFormButton.Name = "openOptionsFormButton";
             this.openOptionsFormButton.Size = new System.Drawing.Size(75, 29);
             this.openOptionsFormButton.TabIndex = 1;
@@ -135,12 +127,24 @@
             this.craxcelNote.AutoSize = true;
             this.craxcelNote.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.craxcelNote.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.craxcelNote.Location = new System.Drawing.Point(9, 377);
+            this.craxcelNote.Location = new System.Drawing.Point(79, 378);
             this.craxcelNote.Name = "craxcelNote";
             this.craxcelNote.Size = new System.Drawing.Size(474, 13);
             this.craxcelNote.TabIndex = 4;
             this.craxcelNote.Text = "craXcel will never overwrite your files, it will always create an unlocked copy o" +
     "f the original.";
+            // 
+            // githubLink
+            // 
+            this.githubLink.AutoSize = true;
+            this.githubLink.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.githubLink.Location = new System.Drawing.Point(571, 407);
+            this.githubLink.Name = "githubLink";
+            this.githubLink.Size = new System.Drawing.Size(48, 17);
+            this.githubLink.TabIndex = 5;
+            this.githubLink.TabStop = true;
+            this.githubLink.Text = "GitHub";
+            this.githubLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.githubLink_LinkClicked);
             // 
             // ApplicationForm
             // 
@@ -148,11 +152,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(624, 441);
+            this.Controls.Add(this.githubLink);
             this.Controls.Add(this.craxcelNote);
             this.Controls.Add(this.openOptionsFormButton);
             this.Controls.Add(this.fileListLabel);
             this.Controls.Add(this.unlockFilesButton);
-            this.Controls.Add(this.progressBar);
             this.Controls.Add(this.clearAllFilesButton);
             this.Controls.Add(this.removeSelectedButton);
             this.Controls.Add(this.addFilesButton);
@@ -175,11 +179,11 @@
         private System.Windows.Forms.Button addFilesButton;
         private System.Windows.Forms.Button removeSelectedButton;
         private System.Windows.Forms.Button clearAllFilesButton;
-        private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Button unlockFilesButton;
         private System.Windows.Forms.Label fileListLabel;
         private System.Windows.Forms.Button openOptionsFormButton;
         private System.Windows.Forms.Label craxcelNote;
+        private System.Windows.Forms.LinkLabel githubLink;
     }
 }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CraxcelLibrary.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -8,13 +9,13 @@ namespace CraxcelLibrary
     /// <summary>
     /// Basic logger, writing lines to a list of strings and then outputting that list to a text file.
     /// </summary>
-    public class Logger
+    public class TextFileLogger : ILogger
     {
         public List<string> Log { get; } = new List<string>();
 
         public FileInfo LogFile { get; }
 
-        public Logger()
+        public TextFileLogger()
         {
             var dateTime = DateTime.Now.ToString("yyyyMMdd_HHmmss");
             var fileName = $"log_{dateTime}.txt";

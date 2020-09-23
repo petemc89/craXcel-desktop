@@ -1,7 +1,9 @@
 ﻿using CraxcelLibrary;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
@@ -10,12 +12,9 @@ namespace FormUI
 {
     public partial class ApplicationForm : Form
     {
-        private DirectoryInfo UserHomeDirectory { get; }
-
         public ApplicationForm()
         {
             InitializeComponent();
-            UserHomeDirectory = ApplicationSettings.CRAXCEL_DIR;
         }
 
         private void addFilesButton_Click(object sender, EventArgs e)
@@ -24,7 +23,7 @@ namespace FormUI
 
             OpenFileDialog openFileDialog = new OpenFileDialog()
             {
-                InitialDirectory = UserHomeDirectory.FullName,
+                InitialDirectory = ApplicationSettings.CRAXCEL_DIR.FullName,
                 Multiselect = true,
                 Filter = SupportedApplicationsFileDialogFilter()
             };
@@ -92,53 +91,35 @@ namespace FormUI
                 return;
             }
 
-            progressBar.Maximum = fileListBox.Items.Count;
+            List<string> filePaths = fileListBox.Items.OfType<string>().ToList();
 
-            var logger = new Logger();
-            logger.Add($"craXcel started");
-            logger.Add($"{fileListBox.Items.Count} files selected");
+            var logger = new TextFileLogger();
 
-            var filesUnlocked = 0;
+            int filesUnlocked = CraxcelProcessor.UnlockFiles(filePaths, logger);
 
-            foreach (var item in fileListBox.Items)
+            MessageBox.Show($"{filesUnlocked}/{filePaths.Count} files unlocked.", "Complete");
+
+            // TO-DO - Possibly only works on Windows?           
+            try
             {
-                var filePath = item.ToString();
-                var file = new FileInfo(filePath);
-
-                var wasSuccessful = CraxcelProcessor.UnlockFile(filePath, logger);
-
-                if (wasSuccessful)
+                var craxcelDir = new ProcessStartInfo(ApplicationSettings.CRAXCEL_DIR.FullName)
                 {
-                    logger.Add($"Successfully unlocked: {file.Name} ({file.FullName})");
-                    filesUnlocked++;
-                }
-                else
-                {
-                    logger.Add($"Failed to unlock: {file.Name} ({file.FullName})");
-                }
+                    UseShellExecute = true,
+                    Verb = "open"
+                };
 
-                progressBar.Value++;
+                var logFile = new ProcessStartInfo(logger.LogFile.FullName)
+                {
+                    UseShellExecute = true,
+                    Verb = "open"
+                };
+
+                Process.Start(craxcelDir);
+                Process.Start(logFile);
             }
-
-            logger.Add($"{filesUnlocked}/{fileListBox.Items.Count} files unlocked");
-            logger.Add("craXcel finished");
-
-            logger.Save();
-
-            MessageBox.Show($"{filesUnlocked}/{fileListBox.Items.Count} files unlocked.", "Complete");
-
-            // TO-DO - Implement additional OS support
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {                
-                try
-                {
-                    Process.Start("explorer.exe", ApplicationSettings.CRAXCEL_DIR.FullName);
-                    Process.Start("notepad.exe", logger.LogFile.FullName);
-                }
-                catch
-                {
-                    
-                }
+            catch
+            {
+               
             }
 
             ResetForm();
@@ -150,13 +131,12 @@ namespace FormUI
         {
             var optionsForm = new UserOptionsForm();
 
-            optionsForm.Show();
+            optionsForm.ShowDialog();
         }
 
         private void ResetForm()
         {
             fileListBox.Items.Clear();
-            progressBar.Value = 0;
         }
 
         private void ToggleAllButtons(bool enableButtons)
@@ -169,6 +149,19 @@ namespace FormUI
                     btn.Enabled = enableButtons;
                 }
             }
+        }
+
+        private void githubLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            var info = new ProcessStartInfo("https://github.com/petemc89/craXcel-desktop")
+            {
+                UseShellExecute = true,
+                Verb = "open"
+            };
+
+            Process.Start(info);
+
+            //Process.Start("https://github.com/petemc89/craXcel-desktop");
         }
     }
 }

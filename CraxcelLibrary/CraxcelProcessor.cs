@@ -1,7 +1,9 @@
 ﻿using craXcel;
-using System;
+using System.Linq;
+using System.Collections.Generic;
 using System.IO;
 using static CraxcelLibrary.Enums;
+using CraxcelLibrary.Interfaces;
 
 namespace CraxcelLibrary
 {
@@ -10,30 +12,51 @@ namespace CraxcelLibrary
     /// </summary>
     public static class CraxcelProcessor
     {
-
         /// <summary>
-        /// Unlocks the specified file within the option parameters set by the user.
+        /// Main entry point from the UI.
         /// </summary>
-        /// <param name="filePath">The filepath of the file to unlock.</param>
-        /// <returns>Bool stating if the file was successfully unlocked.</returns>
-        public static bool UnlockFile(string filePath, Logger logger)
+        /// <param name="filePaths">The file paths of those files being unlocked.</param>
+        /// <returns>The number of successfully unlocked files.</returns>
+        public static int UnlockFiles(List<string> filePaths, ILogger logger = null)
         {
-            try
+            if (logger == null)
+            {
+                logger = new TextFileLogger();
+            }
+
+            logger.Add($"craXcel started");
+            logger.Add($"{filePaths.Count} files selected");
+
+            int filesUnlocked = 0;
+
+            foreach (var filePath in filePaths)
             {
                 var file = new FileInfo(filePath);
 
-                SupportedApplication application = IdentifyApplication(file);
+                try
+                {
+                    SupportedApplication application = IdentifyApplication(file);
 
-                ILockedFile lockedFile = CreateLockedFileInstance(file, application);
+                    ILockedFile lockedFile = CreateLockedFileInstance(file, application);
 
-                lockedFile.Unlock();
+                    lockedFile.Unlock();
 
-                return true;
+                    filesUnlocked++;
+
+                    logger.Add($"Successfully unlocked: {file.Name} ({file.FullName})");
+                }
+                catch
+                {
+                    logger.Add($"Failed to unlock: {file.Name} ({file.FullName})");
+                }
             }
-            catch
-            {
-                return false;
-            }
+
+            logger.Add($"{filesUnlocked}/{filePaths.Count} files unlocked");
+            logger.Add("craXcel finished");
+
+            logger.Save();
+
+            return filesUnlocked;
         }
 
         private static SupportedApplication IdentifyApplication(FileInfo file)
