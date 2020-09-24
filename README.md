@@ -78,7 +78,7 @@ __Note to developers:__ If you're willing to take on the challenge of automating
 
 # Installation
 
-1. Download the latest release's craXcel.zip
+1. Download the latest release's craXcel.zip (https://github.com/petemc89/craXcel-desktop/releases/latest)
 1. Unzip to a folder of your choice
 1. Run craXcel.exe
 
