@@ -1,9 +1,8 @@
 ﻿using craXcel;
-using System.Linq;
+using CraxcelLibrary.Interfaces;
 using System.Collections.Generic;
 using System.IO;
 using static CraxcelLibrary.Enums;
-using CraxcelLibrary.Interfaces;
 
 namespace CraxcelLibrary
 {

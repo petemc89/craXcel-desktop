@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CraxcelLibrary
+﻿namespace CraxcelLibrary
 {
     public class Enums
     {

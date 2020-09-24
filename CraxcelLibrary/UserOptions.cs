@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CraxcelLibrary
+﻿namespace CraxcelLibrary
 {
     /// <summary>
     /// Contains the options set by the user, which should be changeable via whatever UI is implemented.
