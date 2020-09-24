@@ -57,8 +57,6 @@ The steps to follow to complete the unlock is as follows:
 
 6. Head back in to VBAProject Properties > Protection tab, and de-select the 'Lock project for viewing' checkbox and clear any passwords in the boxes below. Click 'OK'.
 
-![image](https://user-images.githubusercontent.com/50495755/94194130-2dd3ba00-fea9-11ea-8518-0d0158cd50c6.png)
-
 7. The modules will now be unlocked and you can save the document without having to repeat these steps.
 
 ![image](https://user-images.githubusercontent.com/50495755/94194188-40e68a00-fea9-11ea-9f1d-77ea49010a4b.png)
@@ -84,7 +82,7 @@ __Note to developers:__ If you're willing to take on the challenge of automating
 
 Or... 
 
-Build it from source!
+__Build it from source!__
 
 ---
 
