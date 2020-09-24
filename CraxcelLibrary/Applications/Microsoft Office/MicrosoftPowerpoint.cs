@@ -16,7 +16,7 @@ namespace craXcel
         {
             PresentationTagNames = new List<string>()
             {
-                "p:modifyVerifier"
+                "modifyVerifier"
             };
         }
 
