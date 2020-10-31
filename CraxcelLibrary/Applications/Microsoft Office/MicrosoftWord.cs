@@ -17,7 +17,9 @@ namespace craXcel
             SettingsTagNames = new List<string>()
             {
                 "writeProtection",
-                "documentProtection"
+                "documentProtection",
+                "w:writeProtection",
+                "w:documentProtection"
             };
         }
 
