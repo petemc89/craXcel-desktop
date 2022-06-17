@@ -1,7 +1,3 @@
-### [Check out the new web app!](https://www.craxcel.com)
-
----
-
 # craXcel-desktop
 Desktop application to unlock Microsoft Office password protected files.
 
